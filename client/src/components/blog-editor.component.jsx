@@ -31,7 +31,7 @@ const BlogEditor = () => {
                 holder: "textEditor",
                 data: Array.isArray(content) ? content[0] : content,
                 tools: tools,
-                placeholder: "Let's write an awesome story"
+                placeholder: "Tell your story..."
             }))
         }
     }, [])
