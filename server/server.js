@@ -8,7 +8,7 @@ import cors from "cors";
 import admin from "firebase-admin";
 import serviceAccountKey from "./medium-firebase-adminsdk.json" assert { type: "json" };
 import { getAuth } from "firebase-admin/auth";
-import aws from "aws-sdk";
+// import aws from "aws-sdk";
 
 //schema below
 import User from "./Schema/User.js";
@@ -35,23 +35,23 @@ mongoose.connect(process.env.DB_LOCATION, {
 });
 
 //setting up s3 bucket
-const s3 = new aws.S3({
-  region: "ap-south-1",
-  accessKeyId: process.env.AWS_ACCESS_KEY,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-});
+// const s3 = new aws.S3({
+//   region: "ap-south-1",
+//   accessKeyId: process.env.AWS_ACCESS_KEY,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+// });
 
-const generateUploadURL = async () => {
-  const date = new Date();
-  const imageName = `${nanoid()}-${date.getTime()}.jpeg`;
+// const generateUploadURL = async () => {
+//   const date = new Date();
+//   const imageName = `${nanoid()}-${date.getTime()}.jpeg`;
 
-  return await s3.getSignedUrlPromise("putObject", {
-    Bucket: "blogging-website-new",
-    Key: imageName,
-    Expires: 1000,
-    ContentType: "image/jpeg",
-  });
-};
+//   return await s3.getSignedUrlPromise("putObject", {
+//     Bucket: "medium-clone-images",
+//     Key: imageName,
+//     Expires: 1000,
+//     ContentType: "image/jpeg",
+//   });
+// };
 
 const verifyJWT = (req, res, next) => {
   const authHeader = req.headers["authorization"];
@@ -98,14 +98,14 @@ const generateUsername = async (email) => {
 };
 
 //upload image url route
-server.get("/get-upload-url", (req, res) => {
-  generateUploadURL()
-    .then((url) => res.status(200).json({ uploadURL: url }))
-    .catch((err) => {
-      console.log(err.message);
-      return res.status(500).json({ error: err.message });
-    });
-});
+// server.get("/get-upload-url", (req, res) => {
+//   generateUploadURL()
+//     .then((url) => res.status(200).json({ uploadURL: url }))
+//     .catch((err) => {
+//       console.log(err.message);
+//       return res.status(500).json({ error: err.message });
+//     });
+// });
 
 server.post("/signup", (req, res) => {
   let { fullname, email, password } = req.body;

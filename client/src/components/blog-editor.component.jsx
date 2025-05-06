@@ -4,7 +4,7 @@ import darkLogo from "../imgs/Medium-Logo-Black.svg";
 import AnimationWrapper from "../common/page-animation";
 import lightBanner from "../imgs/blog banner light.png";
 import darkBanner from "../imgs/blog banner dark.png";
-import { uploadImage } from "../common/aws";
+import { uploadImage } from "../common/supabase";
 import { useContext, useEffect } from "react";
 import { Toaster, toast } from "react-hot-toast"; 
 import { EditorContext } from "../pages/editor.pages";
