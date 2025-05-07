@@ -12,7 +12,7 @@ export const uploadImage = async (img) => {
 
   const { error } = await supabase
     .storage
-    .from('blog-images') // your bucket name
+    .from('medium-clone') // your bucket name
     .upload(filePath, img, {
       cacheControl: '3600',
       upsert: false
@@ -25,7 +25,7 @@ export const uploadImage = async (img) => {
 
   const { data } = supabase
     .storage
-    .from('blog-images')
+    .from('medium-clone')
     .getPublicUrl(filePath);
 
   return data.publicUrl;
